@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="qiyangye 的个人主页：物理专业学生，关注计算理论、实验测量与开源工具。">
+    <meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#12131a" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e3a5f'/%3E%3Ctext x='16' y='22' font-size='16' font-family='system-ui,sans-serif' fill='%23f8f9fa' text-anchor='middle'%3Eq%3C/text%3E%3C/svg%3E">
+    <title>qiyangye · 物理与计算</title>
+    <style>
+        /* ---- CSS 变量 (浅色/深色) ---- */
+        :root {
+            --bg: #f8f9fa;
+            --surface: #ffffff;
+            --text: #1e1e2a;
+            --soft-text: #4a4a5a;
+            --border: #d0d5dd;
+            --accent: #1e3a5f;
+            --accent-soft: #2b5a7a;
+            --line: #dce0e5;
+            --shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #12131a;
+                --surface: #1c1d26;
+                --text: #e3e3ec;
+                --soft-text: #a8abb8;
+                --border: #33364a;
+                --accent: #8ab2d9;
+                --accent-soft: #6d8fbb;
+                --line: #2e3142;
+                --shadow: 0 1px 6px rgba(0,0,0,0.5);
+            }
+        }
+
+        /* ---- 全局重置 & 排版 ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.65;
+            font-weight: 400;
+            font-size: 1.05rem;
+            padding: 2rem 1.5rem 2.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.25s, color 0.25s;
+        }
+
+        /* ---- 容器：最大宽度，留白 ---- */
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* ---- 语义化间距 ---- */
+        header,
+        main,
+        footer {
+            margin-bottom: 2.8rem;
+        }
+
+        footer {
+            margin-bottom: 0;
+        }
+
+        /* ---- 卡片式区域（轻质感） ---- */
+        section {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        section + section {
+            margin-top: 1.8rem;
+        }
+
+        /* ---- 标题与文字 ---- */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--accent);
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: var(--soft-text);
+            margin-top: 0.3rem;
+            border-left: 4px solid var(--accent-soft);
+            padding-left: 1rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        h2 svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+            opacity: 0.7;
+        }
+
+        p,
+        li {
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---- 列表（干净，无装饰） ---- */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent-soft);
+            opacity: 0.7;
+        }
+
+        /* ---- 内联小标签（学术感） ---- */
+        .tag {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 0.1rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: var(--soft-text);
+            margin-right: 0.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* ---- 链接 (只有 github) ---- */
+        a {
+            color: var(--accent-soft);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 450;
+        }
+
+        .github-link svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: currentColor;
+            transition: transform 0.15s;
+        }
+
+        .github-link:hover svg {
+            transform: scale(1.04);
+        }
+
+        /* ---- footer ---- */
+        footer {
+            border-top: 1px solid var(--line);
+            padding-top: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--soft-text);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer small {
+            opacity: 0.8;
+        }
+
+        /* ---- 响应式 ---- */
+        @media (max-width: 520px) {
+            body {
+                padding: 1.2rem 1rem 2rem;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            section {
+                padding: 1.4rem 1.2rem;
+                border-radius: 16px;
+            }
+
+            .subhead {
+                font-size: 1rem;
+                padding-left: 0.8rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+        }
+
+        /* ---- 可访问性: 聚焦样式 ---- */
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* ---- 隐藏装饰用 SVG 的 aria ---- */
+        .deco-svg {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header>
+        <h1>qiyangye</h1>
+        <div class="subhead">
+            物理本科生 · 自学计算机科学基础
+        </div>
+        <p style="margin-top: 1.2rem; max-width: 36em;">
+            你好，我是一名物理专业的学生，正在系统性地补充计算机科学的基础。
+            从实验测量到抽象计算，我着迷于那些既严谨又富有解释力的结构。
+        </p>
+    </header>
+
+    <main>
+        <!-- 我在学什么 -->
+        <section aria-labelledby="learning-heading">
+            <h2 id="learning-heading">
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                    <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l7 3.5-7 3.5-7-3.5 7-3.5zM4 16.82V9.18l7 3.5v7.64l-7-3.5zm9 3.5v-7.64l7-3.5v7.64l-7 3.5z"/>
+                </svg>
+                在学什么
+            </h2>
+            <p>
+                物理方面，我侧重力热光电的实验设计与测量误差分析，习惯用数据理解现象。
+                计算理论方向，我从图灵机与可计算性入手，重新理解“什么可以被计算”。
+                日常工程习惯上，我坚持使用 Git 做版本控制，保持笔记与代码的整洁可追溯。
+            </p>
+            <ul>
+                <li>物理实验：力学、热学、光学、电学中的测量与不确定度</li>
+                <li>计算理论：图灵机模型、可计算性与判定问题</li>
+                <li>工程习惯：Git 版本控制、分支管理与协作流程</li>
+            </ul>
+            <div style="margin-top: 1rem;">
+                <span class="tag">误差分析</span>
+                <span class="tag">图灵机</span>
+                <span class="tag">可计算性</span>
+                <span class="tag">Git</span>
+            </div>
+        </section>
+
+        <!-- 最近在做的事 -->
+        <section aria-labelledby="doing-heading">
+            <h2 id="doing-heading">
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+                </svg>
+                最近在做的事
+            </h2>
+            <p>
+                用图灵机实现二进制串反转——从状态转移表到模拟验证，体会最简计算规则下的构造。
+                同时用 Git 管理实验笔记与代码，练习清晰的提交信息与远端同步。
+                每周整理学习笔记，把模糊的概念写成清晰的解释。
+            </p>
+            <ul>
+                <li>图灵机模拟：二进制串反转（状态转移图与表）</li>
+                <li>Git 实践：本地提交、分支管理、远程推送与拉取</li>
+                <li>写作：可计算性笔记与物理实验反思</li>
+            </ul>
+        </section>
+
+        <!-- 兴趣 -->
+        <section aria-labelledby="interest-heading">
+            <h2 id="interest-heading">
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                </svg>
+                兴趣
+            </h2>
+            <p>
+                我热衷于把抽象概念讲清楚——无论是物理中的场，还是计算理论中的归约。
+                科学史给我一种独特的尺度感：知识如何在试错与洞察中演进。
+                日常喜欢探索开源工具，相信好的工具能塑造思考方式。
+            </p>
+            <div style="margin-top: 0.6rem;">
+                <span class="tag">科学写作</span>
+                <span class="tag">科学史</span>
+                <span class="tag">开源工具</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <small>© 2026 · 由 qiyangye 维护</small>
+        <a href="https://github.com/qiyangye" class="github-link" target="_blank" rel="noopener noreferrer" aria-label="qiyangye 的 GitHub 主页">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+            github.com/qiyangye
+        </a>
+    </footer>
+</div>
+</body>
+</html>
